@@ -12,6 +12,6 @@ app.use("/api/blog",blogRouter);
 
 mongoose.connect(
     "mongodb+srv://admin:TcaCXP1PeQu5j5Xv@cluster0.jb3vknp.mongodb.net/socialMedia?retryWrites=true&w=majority&appName=Cluster0").
-then(()=>app.listen(5000)).
-then(()=>console.log("connected to localhost port 5000")).catch((err)=>console.log(err));
+then(()=>app.listen(5001)).
+then(()=>console.log("connected to localhost port 5001")).catch((err)=>console.log(err));
 
