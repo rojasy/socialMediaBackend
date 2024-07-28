@@ -22,14 +22,15 @@ export const signup = async (req,res,next)=>{
 
     try{
 
-        existingUser = User.findOne({email});
+        existingUser = await User.findOne({email});
 
     }catch(err){
-        return console.log(err);
+        console.log(err);
+        return res.status(500).json({ message: err });
     }
 
     if(existingUser){
-        return res.status(400).json({message: "User Already existing"});
+        return res.status(400).json({message: "User Already existing"+existingUser});
     }
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hashSync(password,salt);
@@ -45,7 +46,8 @@ export const signup = async (req,res,next)=>{
         await user.save();
 
     }catch (err){
-       return console.log(err);
+       console.log(err);
+        return res.status(500).json({ message: err });
     }
 
     return res.status(201).json({user});
